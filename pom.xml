@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fentai</groupId>
+    <artifactId>UltimateShop-ArcMenu</artifactId>
+    <version>1.0.0</version>
+    <name>UltimateShop-ArcMenu</name>
+    <description>Ore style ArcMenu interface for UltimateShop</description>
+
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <ultimateshop.version>5.2.0</ultimateshop.version>
+        <arcmenu.version>3.2.0</arcmenu.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>paper-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>26.2.build.55-alpha</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- UltimateShop with the ArcMenuRenderer hook (cn.superiormc.ultimateshop.api.ArcMenuRenderer). -->
+        <dependency>
+            <groupId>cn.superiormc.ultimateshop</groupId>
+            <artifactId>core</artifactId>
+            <version>${ultimateshop.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Inline text input (ArcMenuTextInputListener.onEditing, handle.edit) needs ArcMenu 3.2.0. -->
+        <dependency>
+            <groupId>com.fentai</groupId>
+            <artifactId>arcmenu-api</artifactId>
+            <version>${arcmenu.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.name}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>plugin.yml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+</project>
